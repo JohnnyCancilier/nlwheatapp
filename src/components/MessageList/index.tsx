@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import { styles } from './styles';
-import { Message } from '../Message';
+import { Message, MessageProps } from '../Message';
+import { api } from '../../services/api';
 
-const message = {
-    id: '1',
-    text: 'Test message',
-    user: {
-        name: 'Johnny Cancilier',
-        avatar_url: 'https://github.com/johnnycancilier.png',
-    }
-}
 
 export function MessageList() {
+    const [currentMessages, setCurrenteMessages] = useState<MessageProps[]>();
+
+    useEffect(() => {
+        async function fetchMessages() {
+            const messagesResponse = await api.get<MessageProps[]>('/messages/last3');
+            setCurrenteMessages(messagesResponse.data);
+        }
+
+        fetchMessages();
+    }, []);
+
     return (
         <ScrollView style={styles.container}
             contentContainerStyle={styles.content}
             keyboardShouldPersistTaps='never'
         >
-            <Message data={message} />
-            <Message data={message} />
-            <Message data={message} />
+            {currentMessages?.map((message) => <Message key={message.id} data={message} />)}
 
         </ScrollView>
     );
