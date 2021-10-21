@@ -25,7 +25,7 @@ export function Message({ data }: Props) {
             transition={{ type: 'timing', duration: 700 }}
             style={styles.container}
         >
-            <Text style={styles.mensagem} >
+            <Text style={styles.mensage} >
                 {data.text}
             </Text>
 

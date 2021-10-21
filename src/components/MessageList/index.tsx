@@ -6,7 +6,7 @@ import { api } from '../../services/api';
 
 
 export function MessageList() {
-    const [currentMessages, setCurrenteMessages] = useState<MessageProps[]>();
+    const [currentMessages, setCurrenteMessages] = useState<MessageProps[]>([]);
 
     useEffect(() => {
         async function fetchMessages() {
@@ -22,7 +22,7 @@ export function MessageList() {
             contentContainerStyle={styles.content}
             keyboardShouldPersistTaps='never'
         >
-            {currentMessages?.map((message) => <Message key={message.id} data={message} />)}
+            {currentMessages.map((message) => <Message key={message.id} data={message} />)}
 
         </ScrollView>
     );

@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         marginBottom: 36,
     },
-    mensagem: {
+    mensage: {
         fontSize: 15,
         fontFamily: FONTS.REGULAR,
         color: COLORS.WHITE,
